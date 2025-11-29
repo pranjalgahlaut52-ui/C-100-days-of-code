@@ -1,0 +1,24 @@
+question-Toggle case of each character in a string.
+answer-#include <stdio.h>
+
+int main() {
+    char str[1000];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin); // Read string with spaces
+
+    for (int i = 0; str[i] != '\0' && str[i] != '\n'; i++) {
+        char ch = str[i];
+        if (ch >= 'A' && ch <= 'Z') {
+            // Convert uppercase to lowercase
+            str[i] = ch + ('a' - 'A'); // or str[i] += 32;
+        } else if (ch >= 'a' && ch <= 'z') {
+            // Convert lowercase to uppercase
+            str[i] = ch - ('a' - 'A'); // or str[i] -= 32;
+        }
+    }
+
+    printf("String after toggling case: %s\n", str);
+
+    return 0;
+}
