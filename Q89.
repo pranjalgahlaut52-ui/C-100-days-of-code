@@ -1,0 +1,20 @@
+question-Replace spaces with hyphens in a string.
+answer-#include <stdio.h>
+
+int main() {
+    char str[1000];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin); // Read string with spaces
+
+    // Replace spaces with hyphens
+    for (int i = 0; str[i] != '\0' && str[i] != '\n'; i++) {
+        if (str[i] == ' ') {
+            str[i] = '-';
+        }
+    }
+
+    printf("Modified string: %s\n", str);
+
+    return 0;
+}
