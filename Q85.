@@ -1,0 +1,20 @@
+question-Convert a lowercase string to uppercase without using built-in functions.
+answer-#include <stdio.h>
+
+int main() {
+    char str[1000];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin); // Read string with spaces
+
+    for (int i = 0; str[i] != '\0' && str[i] != '\n'; i++) {
+        // If character is lowercase, convert to uppercase
+        if (str[i] >= 'a' && str[i] <= 'z') {
+            str[i] = str[i] - ('a' - 'A'); // or str[i] -= 32;
+        }
+    }
+
+    printf("Uppercase string: %s\n", str);
+
+    return 0;
+}
