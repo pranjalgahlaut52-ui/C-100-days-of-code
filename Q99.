@@ -1,0 +1,42 @@
+question-Print initials of a name with the surname displayed in full.
+answer-#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char name[1000];
+
+    printf("Enter the full name: ");
+    fgets(name, sizeof(name), stdin);
+
+    // Remove newline character if present
+    name[strcspn(name, "\n")] = '\0';
+
+    int length = strlen(name);
+    int spaceCount = 0;
+
+    printf("Name in initials + surname format: ");
+
+    for (int i = 0; i < length; i++) {
+        if (name[i] == ' ') {
+            spaceCount++;
+            // If this is the last space before surname
+            if (spaceCount < 1) { // Only print initials for first words
+                if (isalpha(name[i + 1])) {
+                    printf("%c. ", toupper(name[i + 1]));
+                }
+            } else {
+                // Print the rest as surname
+                printf("%s", &name[i + 1]);
+                break;
+            }
+        } else if (i == 0) {
+            // Print the first initial
+            printf("%c. ", toupper(name[i]));
+        }
+    }
+
+    printf("\n");
+
+    return 0;
+}
