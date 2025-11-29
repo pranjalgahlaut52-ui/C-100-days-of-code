@@ -1,0 +1,36 @@
+question-Write a Program to take a sorted array arr[] and an integer x as input, find the index (0-based) of the smallest element in arr[] that is greater than or equal to x and print it. This element is called the ceil of x. If such an element does not exist, print -1. Note: In case of multiple occurrences of ceil of x, return the index of the first occurrence.
+answer-#include <stdio.h>
+
+int main() {
+    int n, x;
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements of the sorted array:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the value of x: ");
+    scanf("%d", &x);
+
+    int ceilIndex = -1;
+
+    // Use binary search to find the first element >= x
+    int left = 0, right = n - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] >= x) {
+            ceilIndex = mid;  // Potential ceil found
+            right = mid - 1;  // Search in the left half for first occurrence
+        } else {
+            left = mid + 1;   // Search in the right half
+        }
+    }
+
+    printf("Index of ceil of %d: %d\n", x, ceilIndex);
+
+    return 0;
+}
